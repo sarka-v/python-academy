@@ -34,7 +34,7 @@ above sea level. The butte is located just
 north of US 30N and the Union Pacific Railroad, 
 which traverse the valley. ''',
 
-'''At the base of Fossil Butte are the bright 
+         '''At the base of Fossil Butte are the bright 
 red, purple, yellow and gray beds of the Wasatch 
 Formation. Eroded portions of these horizontal 
 beds slope gradually upward from the valley floor 
@@ -43,7 +43,7 @@ to the top of the butte are the much steeper
 buff-to-white beds of the Green River Formation, 
 which are about 300 feet thick.''',
 
-'''The monument contains 8198 acres and protects 
+         '''The monument contains 8198 acres and protects 
 a portion of the largest deposit of freshwater fish 
 fossils in the world. The richest fossil fish deposits 
 are found in multiple limestone layers, which lie some 
@@ -52,11 +52,11 @@ represent several varieties of perch, as well as
 other freshwater genera and herring similar to those 
 in modern oceans. Other fish such as paddlefish, 
 garpike and stingray are also present.'''
-]
+         ]
 
-text_choice = int(input("Please choose the number of the text to analyze.. 1, 2 or 3: "))
+text_choice = input("Please choose the number of the text to analyze.. 1, 2 or 3: ")
 
-if text_choice in (1, 2, 3):
+if text_choice in ('1', '2', '3'):
     print("analyzing text...")
 
 else:
@@ -65,47 +65,47 @@ else:
 
 print(ODDELOVAC)
 
-split_words = (TEXTS[text_choice-1]).split()
+split_words = (TEXTS[int(text_choice) - 1]).split()
 number_of_words = len(split_words)
 print(f"There are {number_of_words} words in the selected text.")
 
-
 titlecased = 0
-
-for i in split_words:
-     if(i.istitle()):
-         titlecased = titlecased + 1
-print(f"There are {titlecased} titlecase words.")
-
-
 count1 = 0
 count2 = 0
+numeric = 0
+sum_of_numbers: int = 0
 
 for i in split_words:
-     if(i.islower()):
-         count1 = count1 + 1
-     elif(i.isupper()):
-         count2 = count2 + 1
+    if (i.istitle()):
+        titlecased = titlecased + 1
+    elif (i.islower()):
+        count1 = count1 + 1
+    elif (i.isupper()):
+        count2 = count2 + 1
+    elif (i.isnumeric()):
+        numeric = numeric + 1
+        if i.isnumeric():
+            sum_of_numbers = (int(i)) + sum_of_numbers
+
+print(f"There are {titlecased} titlecase words.")
 print(f"There are {count1} lowecase words.")
 print(f"There are {count2} uppercase words.")
-
-
-numeric = 0
-
-for i in split_words:
-     if(i.isnumeric()):
-         numeric = numeric + 1
 print(f"There are {numeric} numeric words.")
-print(ODDELOVAC)
-
-
-sum_of_numbers = 0
-
-for numbers in split_words:
-    if numbers.isnumeric():
-        sum_of_numbers = (int(numbers)) + sum_of_numbers
 print(f"If we summed up all the numbers in this text we would get: {sum_of_numbers}.")
 
-# tabulka, ktera mi chybi a nevim jak udelat, tak nejak tusim, ze by se mel pouzit slovnik, ale nevim jak
+print(ODDELOVAC)
+
+striped_words = []
 for word in split_words:
-     print(len(word))
+    clear_words = len(word.strip("., "))
+    striped_words.append(clear_words)
+
+occurence = {}
+for word in striped_words:
+    if word not in occurence:
+        occurence[word] = 1
+    else:
+        word in occurence
+        occurence[word] += 1
+
+for x,y in occurence.items(): print(x, y * '*', y)
